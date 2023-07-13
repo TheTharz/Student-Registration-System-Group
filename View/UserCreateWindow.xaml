@@ -1,0 +1,135 @@
+﻿<Window x:Class="StudentRegistrationSystem.View.UserCreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentRegistrationSystem.View"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        Title="UserCreateWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="30 0 0 30">
+            <ListView Name="ItemList"
+                      Margin="20,20,20,0" 
+                      Height="400" 
+                      Width="304"
+                      VerticalAlignment="Top"
+                      BorderThickness="0"
+                      Foreground="DarkSlateGray">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="UserName" 
+                                        HeaderContainerStyle="{StaticResource GridHeader}"
+                                        Width="150" 
+                                        DisplayMemberBinding="{Binding UserName}"/>
+                        <GridViewColumn Header="Password"
+                                        HeaderContainerStyle="{StaticResource GridHeader}"
+                                        Width="150" 
+                                        DisplayMemberBinding="{Binding Password}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+
+        <Border Grid.Column="1" CornerRadius="0 30 30 0">
+            <StackPanel>
+                <TextBlock Text="Create New User"
+                        HorizontalAlignment="Left"
+                       Style="{StaticResource TitleText}"
+                       Margin="50 40 0 5"
+                       Height="40"
+                       Width="300"/>
+
+                <TextBlock Text="User Name"
+                           Style="{StaticResource NormalText}"
+                           Foreground="Gray"
+                           Height="28"
+                           Width="416"
+                           Margin="50 10 0 0 "
+                           HorizontalAlignment="Left"/>
+
+                <TextBox x:Name="UserNameTextBox" 
+                         HorizontalAlignment="Left"
+                         Style="{StaticResource ResourceKey=TBStyle}"
+                         Text="{Binding ElementName=ItemList,Path=SelectedItem.UserName,Mode=OneWay}"
+                         Margin="50 0"/>
+
+                <TextBlock Text="Password"
+                           Style="{StaticResource NormalText}"
+                           Foreground="Gray"
+                           Height="28"
+                           Width="416"
+                           Margin="50 10 0 0 "
+                           HorizontalAlignment="Left"/>
+
+                <TextBox x:Name="PasswordTextBox" 
+                         HorizontalAlignment="Left"
+                         Style="{StaticResource ResourceKey=TBStyle}"
+                         Text="{Binding ElementName=ItemList,Path=SelectedItem.Password,Mode=OneWay}"
+                         Margin="50 0"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="Add"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="10 20" Click="Add" />
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="View"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="30 20" Click="View" />
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="Main Menu"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="20 20" Click="Main_Menu" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="Delete"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="10 20" Click="Delete" />
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="Update"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="30 20" Click="Update" />
+                    <Button Style="{DynamicResource RBStyle}"
+                        Height="30"
+                        Width="100"
+                        Content="Exit"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="20 20" Click="Exit" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

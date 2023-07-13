@@ -1,0 +1,199 @@
+﻿<Window
+    x:Class="StudentRegistrationSystem.View.UpdateWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:StudentRegistrationSystem.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StudentRegistrationSystem.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="UpdateWindow"
+    Width="800"
+    Height="450"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <ViewModels:ReadWindowVM />
+    </Window.DataContext>
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <StackPanel
+                Width="335"
+                Margin="0,10"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="330"
+                    Padding="8"
+                    Style="{StaticResource Heading}"
+                    Text="Student"
+                    TextAlignment="Right" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,20,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="Student ID" />
+                <TextBlock
+                    Width="50"
+                    Margin="10,20,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="{Binding Id}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="First Name" />
+                <TextBox
+                    Name="fn"
+                    Width="100"
+                    Margin="10,10,10,0"
+                    Style="{StaticResource Textbox}"
+                    Text="{Binding Firstname}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="Last Name" />
+                <TextBox
+                    Width="100"
+                    Margin="11,10,10,0"
+                    Style="{StaticResource Textbox}"
+                    Text="{Binding Lastname}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,20,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="Date Of Birth" />
+                <DatePicker
+                    Margin="0,20,10,0"
+                    DisplayDate="{Binding Bday}"
+                    SelectedDate="{Binding Bday}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="Age" />
+                <TextBlock
+                    Width="100"
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="{Binding User.Age}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="Address" />
+                <TextBox
+                    Margin="25,10,10,0"
+                    Style="{StaticResource Textbox}"
+                    Text="{Binding Address}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Margin="10,10,10,0"
+                    Style="{StaticResource NormalText}"
+                    Text="E-Mail" />
+                <TextBox
+                    Margin="34,10,10,0"
+                    Style="{StaticResource Textbox}"
+                    Text="{Binding Emailt}" />
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Column="1" CornerRadius="30 0 0 30">
+            <StackPanel>
+                <StackPanel
+                    Width="470"
+                    Margin="0,10"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Width="470"
+                        Margin="-1,0"
+                        Padding="8"
+                        Style="{StaticResource Heading}"
+                        Text="  Report   Card"
+                        TextAlignment="Left" />
+                </StackPanel>
+                <TextBlock
+                    Margin="20,10,10,10"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="DarkSlateGray"
+                    Style="{StaticResource NormalText}"
+                    Text="Modules and Results" />
+                <DataGrid
+                    Name="ScoreUpdate"
+                    MinHeight="200"
+                    Margin="20,0,20,20"
+                    AutoGenerateColumns="False"
+                    BorderThickness="0"
+                    CellEditEnding="ScoreUpdate_CellEditEnding"
+                    ItemsSource="{Binding LoadedModules}"
+                    SelectionChanged="ScoreUpdate_SelectionChanged">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="MediumPurple" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="BorderThickness" Value="0.5" />
+                            <Setter Property="FontFamily" Value="Poppins" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="BorderBrush" Value="white" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding ModuleName}"
+                            Header="Module name"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding Code}"
+                            Header="Module Id"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Width="1*"
+                            Binding="{Binding gpv}"
+                            Header="Score"
+                            IsReadOnly="False" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel
+                    Height="50"
+                    Margin="0,30,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="BackSearch"
+                        Click="BackSearch_Click"
+                        Content="Back"
+                        Style="{StaticResource Button02}" />
+                    <Button
+                        x:Name="UpdateChange"
+                        Margin="20,0,0,0"
+                        Command="{Binding SaveChangesCommand}"
+                        CommandParameter="{Binding User}"
+                        Content="Update Changes"
+                        Style="{StaticResource Button02}" />
+                </StackPanel>
+            </StackPanel>
+
+        </Border>
+    </Grid>
+</Window>
